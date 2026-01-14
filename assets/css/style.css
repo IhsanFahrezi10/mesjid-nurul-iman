@@ -1,0 +1,812 @@
+/* =========================================
+   1. GLOBAL RESET (Wajib ada)
+   ========================================= */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  background-color: #efe1b5; /* Warna latar sementara */
+}
+
+html {
+  /* 1. Membuat efek scroll menjadi halus (animasi) */
+  scroll-behavior: smooth;
+
+  /* 2. PENTING: Memberi jarak henti agar judul section tidak ketutupan Navbar */
+  /* Sesuaikan angka 100px ini dengan tinggi navbar kamu (biasanya 80px - 100px) */
+  scroll-padding-top: 100px;
+}
+/* =========================================
+   2. NAVBAR STYLING
+   ========================================= */
+.navbar {
+  position: fixed; /* Agar nempel di atas saat discroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #efe1b5;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan tipis */
+  z-index: 1000;
+  padding: 15px 0;
+  border-bottom: #000000 1px solid; /* Garis bawah navbar */
+}
+
+.nav-container {
+  width: 95%; /* Diperlebar hampir mentok layar */
+  max-width: 100%; /* Hapus batasan 1200px */
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 50px;
+}
+
+/* --- LOGO --- */
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+  white-space: nowrap;
+  margin-left: 30px;
+}
+
+.logo span {
+  color: black; /* Warna Hijau */
+}
+
+/* --- MENU LINK --- */
+.nav-links {
+  display: flex;
+  gap: 30px; /* Jarak antar tulisan menu */
+  margin-left: auto;
+}
+
+.nav-links a {
+  color: black;
+  font-weight: 520;
+  font-size: 0.95rem;
+  transition: 0.3s;
+  position: relative;
+  padding-bottom: 5px;
+  transition: 0.3s; /* Efek transisi halus */
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%; /* Mulai dari 0 (hilang) */
+  height: 2px; /* Ketebalan garis */
+  bottom: 0;
+  left: 0;
+  background-color: #27ae60; /* Warna Hijau */
+
+  /* Animasi Mengalir */
+  transition: width 0.3s ease-in-out;
+}
+
+/* Style saat AKTIF (Halaman sedang dibuka) */
+.nav-links a.active {
+  color: #27ae60; /* Warna Hijau */
+  font-weight: 700; /* Jadi Tebal */
+
+  /* Opsional: Garis bawah */
+  padding-bottom: 5px;
+}
+/* Efek saat mouse diarahkan (Hover) */
+.nav-links a:hover,
+.nav-links a.active {
+  color: #27ae60;
+}
+.nav-links a:hover::after {
+  width: 100%; /* Melebar jadi 100% saat disentuh */
+}
+
+/* Opsi Tambahan: Agar link yang sedang aktif (active) garisnya tetap muncul */
+.nav-links a.active::after {
+  width: 100%;
+}
+
+/* --- HAMBURGER MENU (Untuk HP) --- */
+.menu-toggle {
+  display: none; /* Sembunyi di Laptop */
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto; /* Dorong ke paling kanan khusus HP */
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
+}
+
+/* =========================================
+   3. RESPONSIVE (Tampilan HP)
+   ========================================= */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex; /* Munculkan tombol burger */
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px; /* Sesuaikan tinggi navbar */
+    right: 0;
+    height: 100vh;
+    width: 60%;
+    background-color: white;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+
+    /* Animasi sembunyi ke kanan */
+    transform: translateX(100%);
+    transition: 0.3s ease-in-out;
+  }
+
+  /* Class ini nanti diaktifkan pakai JS */
+  .nav-links.nav-active {
+    transform: translateX(0%);
+  }
+}
+
+/* =========================================
+   LOCATION BAR (Dibawah Navbar)
+   ========================================= */
+.location-bar {
+  width: 97%; /* Gunakan 90% lebar layar (sisa 10% untuk gap kiri-kanan) */
+  max-width: 1900px; /* Batas maksimal agar sejajar dengan konten lain */
+  margin: 80px auto 0 auto;
+  background-color: #e6d5a0;
+  color: rgb(0, 0, 0);
+  padding: 8px 0;
+  text-align: center;
+  font-weight: 550;
+  border-radius: 20px;
+  position: relative;
+  z-index: 900;
+}
+
+.location-bar .container {
+  display: flex;
+  justify-content: left; /* Konten rata tengah */
+  align-items: center;
+  padding-left: 45px;
+  gap: 10px; /* Jarak ikon dan teks */
+}
+
+.location-bar svg {
+  fill: #000000; /* Warna Ikon Hijau */
+}
+
+/* =========================================
+   KOREKSI HERO SECTION
+   ========================================= */
+/* Karena ada bar baru, kita perlu reset margin hero agar pas */
+.hero {
+  /* Kurangi tinggi Hero sedikit agar tidak terlalu panjang scrollnya */
+  /* calc(100vh - tinggi navbar - tinggi location bar) */
+  height: calc(100vh - 120px);
+  margin-top: 0;
+}
+/* Styling untuk teks keterangan peta */
+.map-hint {
+  font-size: 0.75rem; /* Lebih kecil dari teks utama */
+  font-weight: 400; /* Lebih tipis */
+  opacity: 0.8; /* Sedikit transparan agar tidak terlalu mencolok */
+  margin-left: 8px; /* Jarak dari alamat utama */
+  font-style: italic; /* Miring (opsional, biar keren) */
+  color: rgb(43, 43, 43); /* Warna Kuning Emas agar kontras dengan background gelap */
+}
+
+/* RESPONSIF: Sembunyikan teks ini di HP agar tidak memenuhi layar */
+@media (max-width: 768px) {
+  .map-hint {
+    display: none;
+  }
+}
+/* =========================================
+   HERO SECTION (FOTO UTAMA)
+   ========================================= */
+.hero {
+  position: relative;
+  width: 100%;
+  /* Mengatur tinggi section. 70vh artinya 70% dari tinggi layar */
+  height: 70vh;
+  min-height: 500px; /* Batas minimal tinggi agar tidak terlalu pendek di layar kecil */
+  margin-top: 10px; /* Jarak sedikit dari location bar diatasnya */
+
+  /* --- PENGATURAN BACKGROUND GAMBAR --- */
+  /* Pastikan path/lokasi gambarnya benar */
+  background-image: url("../img/mesjid-bg.jpg");
+  background-size: cover; /* Gambar menutupi seluruh area, mungkin terpotong sedikit */
+  background-position: center; /* Fokus gambar di tengah */
+  background-repeat: no-repeat;
+
+  /* Membuat sudutnya agak melengkung (opsional, biar senada dengan location bar) */
+  border-radius: 0px;
+  overflow: hidden; /* Agar overlay tidak keluar dari sudut melengkung */
+}
+
+/* --- OVERLAY GELAP --- */
+.hero-overlay {
+  /* Maksud: Arah ke Atas (to top), Mulai dari #efe1b5 (Solid), berakhir di Transparent (Bening) */
+  background-image: linear-gradient(to top, #efe1b5, transparent);
+
+  /* Pengaturan posisi (tetap sama) */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- KONTEN TEKS --- */
+.hero-content {
+  text-align: center;
+  color: white; /* Semua teks jadi putih */
+  padding: 20px;
+  max-width: 800px; /* Membatasi lebar teks agar enak dibaca */
+}
+
+.hero-content h1 {
+  font-size: 3rem; /* Ukuran font besar */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  /* Memberi bayangan pada teks agar lebih kontras */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 40px;
+  font-weight: 550;
+  opacity: 0.9; /* Sedikit transparan */
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Style Dasar Tombol */
+.btn {
+  display: inline-block;
+  padding: 12px 12px;
+  border-radius: 20px; /* Bentuk kapsul */
+  font-weight: 700;
+  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Tombol Utama (Hijau) */
+.btn-primary {
+  background-color: #efe1b5;
+  color: black;
+  border: 2px solid #efe1b5;
+}
+.btn-primary:hover {
+  background-color: #000000;
+  border-color: #000000;
+  color: #efe1b5;
+  transform: translateY(-3px); /* Efek naik saat di-hover */
+}
+
+/* Tombol Outline (Garis Putih) */
+.btn-outline {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+}
+.btn-outline:hover {
+  background-color: white;
+  color: #333; /* Teks berubah jadi gelap saat background putih */
+}
+
+/* =========================================
+   RESPONSIVE (HP)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Perkecil ukuran font di HP */
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  /* Tombol jadi atas-bawah di HP */
+  .hero-buttons {
+    flex-direction: column;
+  }
+  .btn {
+    width: 100%;
+  } /* Tombol selebar layar HP */
+}
+
+/* =========================================
+   SECTION JADWAL (Layout Utama)
+   ========================================= */
+.section-jadwal {
+  padding: 40px 40px; /* Jarak atas bawah */
+  background-color: #ffffff; /* Warna latar sedikit abu agar beda dari putih */
+  border-radius: 50px;
+}
+
+.jadwal-wrapper {
+  display: flex; /* Kunci membuat kolom bersebelahan */
+  gap: 30px; /* Jarak antar kotak kiri dan kanan */
+  align-items: flex-start; /* Agar tinggi kotak mengikuti isinya */
+}
+
+/* Style Dasar Kartu (Putih, Shadow, Radius) */
+.card {
+  background: #e9daaa;
+  flex: 1; /* Membagi lebar sama rata (50% : 50%) */
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Shadow halus */
+  border: 1px solid #eee;
+}
+
+.card-header h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: #000000;
+}
+.card-header h4 {
+  font-size: 1.2rem;
+  color: #000000;
+  margin-bottom: 5px;
+}
+.card-header p {
+  font-size: 1.3rem;
+  font-weight: 550;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+/* =========================================
+   KOLOM KIRI: JAM & GRID SHOLAT
+   ========================================= */
+/* Box Jam Digital */
+/* Container Kotak Jam */
+.jam-box {
+  text-align: center;
+  background-color: #e6d5a0; /* Warna Cream */
+  padding: 20px;
+  border-radius: 15px;
+  margin: 48px 0;
+  border: #000000 1px solid;
+  /* HAPUS 'inset' agar shadow keluar */
+  /* x=0, y=10px (bawah), blur=25px (lembut), warna=hitam transparan 20% */
+  box-shadow: 0px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Angka Jam Digital */
+/* 1. Tampilan Standar (Laptop/Tablet) */
+.jam-box h1 {
+  font-family: "Orbitron", sans-serif;
+
+  /* UBAH DISINI: Turunkan sedikit dari 3.5rem ke 3rem */
+  font-size: 3rem;
+
+  font-weight: 700;
+  color: #000000;
+  line-height: 1;
+  margin-bottom: 5px;
+  letter-spacing: 3px;
+}
+
+/* 2. Tampilan Responsif (Khusus HP) - TAMBAHKAN INI */
+/* 2. Tampilan Responsif (Khusus HP) - TAMBAHKAN INI */
+@media (max-width: 768px) {
+  /* Kecilkan padding kotaknya agar tidak memakan tempat */
+  .jam-box {
+    padding: 15px !important;
+    margin: 10px 0;
+  }
+
+  /* Kecilkan huruf jamnya drastis agar muat satu baris */
+  .jam-box h1 {
+    font-size: 2rem; /* Ukuran pas untuk layar HP rata-rata */
+    letter-spacing: 1px; /* Rapatkan sedikit jarak antar angka */
+  }
+
+  /* Kecilkan tulisan 'WIB - Medan' juga */
+  .lokasi-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+  }
+}
+
+/* Badge Lokasi (WIB - Medan) di bawah jam */
+.lokasi-badge {
+  background-color: #444; /* Abu gelap */
+  color: #ddd; /* Teks abu terang */
+  padding: 4px 12px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif; /* Balik ke font biasa untuk teks ini */
+  letter-spacing: 1px;
+}
+
+/* Grid Kotak Sholat (Hasil Generate JS) */
+.jadwal-grid {
+  display: grid;
+  /* Membuat kolom otomatis, minimal lebar 80px */
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+/* Styling Class .sholat-card (Ini dibuat oleh file JS script.js) */
+.sholat-card {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 15px 5px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.sholat-card:hover {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+/* Mengubah warna teks saat di-hover jadi putih */
+.sholat-card:hover h4,
+.sholat-card:hover p {
+  color: #efe1b5;
+}
+
+.sholat-card h4 {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.sholat-card p {
+  font-weight: 700;
+  color: #000000;
+  font-size: 1.1rem;
+}
+
+/* =========================================
+   KOLOM KANAN: PETUGAS JUMAT
+   ========================================= */
+.highlight-header h3 {
+  color: #000000; /* Judul hijau khusus Jumat */
+}
+
+.petugas-list {
+  margin-top: 20px;
+}
+
+.petugas-item {
+  display: flex;
+  justify-content: space-between; /* Kiri Kanan mentok */
+  padding: 15px 0;
+  border-bottom: 1px solid #000000; /* Garis putus-putus pembatas */
+}
+
+.petugas-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+  color: #7f8c8d; /* Abu-abu */
+}
+
+.nama {
+  font-weight: 700;
+  color: #000000; /* Gelap */
+  text-align: right;
+}
+
+.info-footer {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-align: left;
+  color: #000;
+  font-style: italic;
+
+  /* --- TAMBAHAN UNTUK EFEK BOX 3D --- */
+
+  /* 1. Beri warna latar & border agar bentuk kotaknya jelas */
+  padding: 5px; /* Jarak teks ke garis tepi */
+  border-radius: 12px; /* Sudut melengkung */
+
+  /* 2. Shadow 3D (Bayangan Keras/Solid) */
+  /* Geser Kanan 6px, Geser Bawah 6px, Blur 0px (Solid) */
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.2);
+
+  /* Opsional: Efek saat ditekan biar makin berasa 3D */
+  transition: 0.2s;
+}
+
+/* Efek pencet (Opsional) */
+.info-footer:active {
+  transform: translate(4px, 4px); /* Turun mengikuti bayangan */
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2); /* Bayangan menipis */
+}
+
+/* =========================================
+   RESPONSIVE (HP)
+   ========================================= */
+@media (max-width: 768px) {
+  .jadwal-wrapper {
+    flex-direction: column; /* Ubah jadi atas-bawah di HP */
+  }
+
+  .card {
+    width: 100%; /* Lebar penuh di HP */
+  }
+}
+
+/* =========================================
+   SECTION ZAKAT
+   ========================================= */
+.section-zakat {
+  padding: 80px 0;
+  background-color: #efe1b5;
+}
+
+/* Judul Section (Bisa dipakai ulang di halaman lain) */
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-title h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-title p {
+  color: #777;
+}
+
+/* Card Pembungkus Tabel */
+/* Update CSS ini di file style.css */
+.table-card {
+  /* 1. UBAH INI: Beri warna latar putih agar bayangan terlihat */
+  background: #ffffff;
+
+  /* 2. TAMBAHKAN INI: Bayangan halus */
+  /* x-offset | y-offset | blur-radius | color (hitam transparan halus) */
+  box-shadow: 0 15px 8px rgba(0, 0, 0, 0.2);
+
+  border: none; /* Hilangkan garis pinggir karena sudah ada shadow */
+
+  /* --- Kode lainnya di bawah ini biarkan sama --- */
+
+  /* Atur Posisi (Tetap di Tengah) */
+  max-width: 900px;
+  width: 95%;
+  margin: 0 auto;
+
+  /* Reset Padding agar tabel mentok ke pinggir kartu */
+  padding: 0 !important;
+
+  /* Sudut melengkung */
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+/* Agar tabel bisa di-scroll horizontal di HP */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* --- DESAIN TABEL --- */
+.zakat-table {
+  width: 100%;
+  border-collapse: collapse; /* Hilangkan jarak antar garis */
+  min-width: 600px; /* Lebar minimal agar tidak gepeng di HP */
+}
+
+/* Header Tabel */
+.zakat-table thead {
+  background-color: #2c3e50; /* Hijau Tema */
+  color: white;
+}
+
+.zakat-table th {
+  padding: 15px;
+  text-align: center; /* Judul kolom rata tengah */
+  font-size: 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.zakat-table th small {
+  display: block; /* Turun baris */
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin-top: 5px;
+  color: #e8f5e9; /* Putih agak hijau */
+}
+
+/* Isi Tabel (Body) */
+.zakat-table td {
+  padding: 12px 15px;
+  text-align: center; /* Isi rata tengah */
+  color: #2c3e50;
+  border-bottom: 1px solid #eee;
+}
+
+/* Kolom Pertama (Jumlah Orang) kita buat Bold & Rata Kiri dikit */
+.zakat-table td:first-child {
+  font-weight: 700;
+  color: #2c3e50;
+  background-color: #f8f9fa; /* Warna beda dikit */
+}
+
+/* Efek Zebra (Baris Genap warnanya beda) */
+.zakat-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Efek Hover (Saat mouse lewat) */
+.zakat-table tbody tr:hover {
+  background-color: #e8f5e9; /* Hijau sangat muda */
+  transition: 0.2s;
+}
+
+/* Harga di tabel kita buat agak tebal */
+.zakat-table td:not(:first-child) {
+  font-family: "Courier New", monospace; /* Font monospace biar angka sejajar */
+  font-weight: 600;
+}
+
+/* Footer Catatan */
+.zakat-footer {
+  padding: 15px;
+  text-align: center;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  color: #4d4c4c;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* =========================================
+   FOOTER (CONTACT SECTION)
+   ========================================= */
+.footer-section {
+  width: 100%; /* Memenuhi lebar layar */
+  background-color: #2c3e50; /* Warna Latar Gelap (Sama seperti location bar) */
+  color: #cfbc7f; /* Teks Putih */
+  padding: 60px 0 20px 0; /* Padding atas besar, bawah kecil */
+  text-align: center;
+  position: relative;
+  border-top: 5px solid #cfbc7f; /* Aksen hijau di garis atas */
+}
+
+/* Judul Footer */
+.footer-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.footer-section p {
+  color: #cfbc7f; /* Abu terang */
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* Container Tombol Kontak */
+.contact-links {
+  display: flex;
+  justify-content: center; /* Tombol rata tengah */
+  gap: 20px; /* Jarak antar tombol */
+  flex-wrap: wrap; /* Agar turun ke bawah kalau layar sempit (HP) */
+  margin-bottom: 30px;
+}
+
+/* Desain Tombol Kontak */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.1); /* Putih transparan */
+  padding: 12px 25px;
+  border-radius: 50px; /* Kapsul */
+  text-decoration: none;
+  color: #cfbc7f;
+  font-weight: 600;
+  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-item svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- Warna Spesifik Saat Hover (Disentuh) --- */
+
+/* 1. WhatsApp Hover (Hijau WA) */
+.contact-item.wa:hover {
+  background-color: #25d366;
+  border-color: #25d366;
+  transform: translateY(-5px); /* Naik sedikit */
+  color: #2c3e50;
+}
+
+/* 2. Instagram Hover (Gradasi IG) */
+.contact-item.ig:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: transparent;
+  transform: translateY(-5px);
+}
+
+/* 3. Email Hover (Biru/Merah Gmail) */
+.contact-item.email:hover {
+  background-color: #ea4335;
+  border-color: #ea4335;
+  transform: translateY(-5px);
+}
+
+/* Footer Bottom (Copyright) */
+/* Styling Tambahan untuk Footer Bottom */
+.footer-bottom {
+  font-size: 0.9rem;
+  color: #cfbc7f; /* Abu-abu soft */
+  padding-top: 25px;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  line-height: 1.6;
+}
+
+.developer-credit {
+  margin-left: 10px; /* Jarak dari copyright di layar lebar */
+}
+
+/* Membuat nama kamu sedikit lebih terang/tebal */
+.dev-name {
+  color: #cfbc7f; /* Putih terang */
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Responsif di HP */
+@media (max-width: 768px) {
+  /* Di HP, turunkan baris agar tidak kepanjangan */
+  .mobile-break {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .developer-credit {
+    margin-left: 0;
+    display: block; /* Nama developer pindah ke baris baru */
+  }
+}

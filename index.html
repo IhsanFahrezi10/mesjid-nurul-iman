@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Masjid Nurul Iman</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container nav-container">
+        <a href="#home" class="logo"> Masjid <span>Nurul Iman</span> </a>
+
+        <ul class="nav-links">
+          <li><a href="#home" class="active">Home</a></li>
+          <li><a href="#jadwal" class="active">Jadwal Sholat</a></li>
+          <li><a href="#zakat" class="active">Info Zakat</a></li>
+          <li><a href="#kontak" class="active">Hubungi Kami</a></li>
+        </ul>
+
+        <div class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+    <div class="location-bar">
+      <a href="https://maps.app.goo.gl/MpfyFDpbEZWSNjRW9" target="_blank" class="location-bar" data-aos="fade-down" data-aos-delay="200">
+        <div class="container">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+          </svg>
+          <span>Jl. Bahapal, Sinaksak, Kec. Tapian Dolok, Kabupaten Simalungun, Sumatera Utara 21154</span>
+          <small class="map-hint">(Klik untuk lihat peta)</small>
+        </div>
+      </a>
+    </div>
+    <section id="home" class="hero" data-aos="fade-up" data-aos-duration="1500">
+      <div class="hero-overlay">
+        <div class="container hero-content">
+          <h1>Menemukan Ketenangan dalam Ibadah. Selamat datang di portal<br />Masjid Nurul Iman</h1>
+          <p>Tempat di mana hati terpaut pada Ilahi dan ukhuwah terjalin indah.</p>
+
+          <div class="hero-buttons">
+            <a href="#jadwal" class="btn btn-primary">Jelajahi lebih lanjut</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="jadwal" class="section-jadwal">
+      <div class="container">
+        <div class="jadwal-wrapper">
+          <div class="card jadwal-harian" data-aos="fade-right">
+            <div class="card-header">
+              <h3>Jadwal Sholat Hari Ini</h3>
+              <h4>Masjid Nurul Iman Bahapal</h4>
+              <p id="tanggal-hari-ini">Memuat tanggal...</p>
+            </div>
+
+            <div class="jam-box" data-aos="zoom-in" data-aos-delay="300">
+              <h1 id="jam-digital">00:00:00</h1>
+              <span class="lokasi-badge">WIB - Dolok Maraja</span>
+            </div>
+
+            <div id="daftar-sholat" class="jadwal-grid"></div>
+          </div>
+
+          <div class="card jadwal-jumat" data-aos="fade-left">
+            <div class="card-header highlight-header">
+              <h3>Sholat Jumat</h3>
+              <p>Jumat, 16 Januari 2026</p>
+            </div>
+
+            <div class="petugas-list">
+              <div class="petugas-item" data-aos="fade-up" data-aos-delay="100">
+                <span class="label">Khatib</span>
+                <span class="nama">Ust. H. Abdul Somad</span>
+              </div>
+              <div class="petugas-item" data-aos="fade-up" data-aos-delay="200">
+                <span class="label">Imam</span>
+                <span class="nama">Ust. Muzammil Hasballah</span>
+              </div>
+              <div class="petugas-item" data-aos="fade-up" data-aos-delay="300">
+                <span class="label">Muazzin</span>
+                <span class="nama">Bpk. Ilham</span>
+              </div>
+              <div class="petugas-item" data-aos="fade-up" data-aos-delay="400">
+                <span class="label">Bilal</span>
+                <span class="nama">Sdr. Rizky</span>
+              </div>
+            </div>
+
+            <div class="info-footer">
+              <small>"Sungguh berhentilah kaum-kaum dari meninggalkan beberapa Jumat atau sungguh Allah menutup hati mereka sehingga mereka termasuk orang-orang yang lalai," (HR Muslim).</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="zakat" class="section-zakat">
+      <div class="container">
+        <div class="section-title" data-aos="fade-up">
+          <h2>Ketentuan Zakat Fitrah 1446 H / 2025 M</h2>
+          <p>Besaran uang pengganti beras (2,5 Kg / 3,5 Liter) sesuai harga pasar.</p>
+        </div>
+
+        <div class="card table-card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="table-responsive">
+            <table class="zakat-table">
+              <thead>
+                <tr>
+                  <th>Jumlah Orang</th>
+                  <th>Beras Super<br /><small>(Rp 50.000/jiwa)</small></th>
+                  <th>Beras Standar<br /><small>(Rp 40.000/jiwa)</small></th>
+                  <th>Beras Biasa<br /><small>(Rp 35.000/jiwa)</small></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1 Orang</strong></td>
+                  <td>Rp 50.000</td>
+                  <td>Rp 40.000</td>
+                  <td>Rp 35.000</td>
+                </tr>
+                <tr>
+                  <td><strong>2 Orang</strong></td>
+                  <td>Rp 100.000</td>
+                  <td>Rp 80.000</td>
+                  <td>Rp 70.000</td>
+                </tr>
+                <tr>
+                  <td><strong>3 Orang</strong></td>
+                  <td>Rp 150.000</td>
+                  <td>Rp 120.000</td>
+                  <td>Rp 105.000</td>
+                </tr>
+                <tr>
+                  <td><strong>4 Orang</strong></td>
+                  <td>Rp 200.000</td>
+                  <td>Rp 160.000</td>
+                  <td>Rp 140.000</td>
+                </tr>
+                <tr>
+                  <td><strong>5 Orang</strong></td>
+                  <td>Rp 250.000</td>
+                  <td>Rp 200.000</td>
+                  <td>Rp 175.000</td>
+                </tr>
+                <tr>
+                  <td><strong>6 Orang</strong></td>
+                  <td>Rp 300.000</td>
+                  <td>Rp 240.000</td>
+                  <td>Rp 210.000</td>
+                </tr>
+                <tr>
+                  <td><strong>7 Orang</strong></td>
+                  <td>Rp 350.000</td>
+                  <td>Rp 280.000</td>
+                  <td>Rp 245.000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="zakat-footer">
+            <small>Mohon segera bayarkan zakat anda, pembayaran yang lebih cepat akan mempermudah proses penyaluran zakat</small>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="kontak" class="footer-section">
+      <div class="container footer-content">
+        <h2 data-aos="fade-up">Hubungi Kami</h2>
+        <p data-aos="fade-up" data-aos-delay="100">
+          Punya pertanyaan seputar kegiatan masjid atau layanan umat?<br />
+          Silakan hubungi kami melalui kanal di bawah ini.
+        </p>
+
+        <div class="contact-links" data-aos="zoom-in" data-aos-delay="200">
+          <a href="https://wa.me/6282213275683" target="_blank" class="contact-item wa">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592z"
+              />
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+
+          <a href="https://instagram.com/fahreziihsann" target="_blank" class="contact-item ig">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.281.11-.705.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.486-.276a2.478 2.478 0 0 1-.919-.598 2.48 2.48 0 0 1-.599-.92c-.11-.281-.24-.705-.276-1.485-.038-.843-.047-1.096-.047-3.232 0-2.136.009-2.388.047-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
+              />
+            </svg>
+            <span>Instagram</span>
+          </a>
+
+          <a href="mailto:ihsanfahrezi23@gmail.com" class="contact-item email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+              <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"
+              />
+            </svg>
+            <span>Email</span>
+          </a>
+        </div>
+
+        <div class="footer-bottom">&copy; 2026 Masjid Nurul Iman Bahapal</div>
+          <span class="developer-credit"> Developed by <span class="dev-name">mybabyshane | Ihsan Fahrezi Lubis</span> </span>
+        </div>
+      </div>
+    </section>
+    <script src="assets/js/script.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      AOS.init({
+        duration: 1000 /* Durasi animasi 1 detik (1000ms) */,
+        once: true /* Animasi cuma jalan sekali saat turun (biar gak pusing naik turun) */,
+      });
+    </script>
+  </body>
+</html>
